@@ -3,18 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@11.0.7",
+  "packageManager": "npm@11.13.0",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
-    "build": "tsc && vite build",
+    "dev": "node scripts/dev-server.mjs",
+    "build": "vite build",
     "preview": "vite preview --host 0.0.0.0",
-    "check": "tsc --noEmit"
+    "check": "node --check src/main.js"
   },
   "devDependencies": {
-    "typescript": "^5.5.4",
     "vite": "^5.4.2"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": ["esbuild"]
   }
 }

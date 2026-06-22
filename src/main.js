@@ -1,22 +1,6 @@
-import './styles.css';
+﻿import './styles.css';
 
-type PageKey =
-  | 'start'
-  | 'leistungen'
-  | 'branchen'
-  | 'ergebnisse'
-  | 'prozess'
-  | 'ueber-uns'
-  | 'kontakt'
-  | 'impressum'
-  | 'datenschutz';
-
-type NavItem = {
-  key: PageKey;
-  label: string;
-};
-
-const navItems: NavItem[] = [
+const navItems = [
   { key: 'leistungen', label: 'Leistungen' },
   { key: 'branchen', label: 'Branchen' },
   { key: 'ergebnisse', label: 'Ergebnisse' },
@@ -131,7 +115,7 @@ const processSteps = [
   },
 ];
 
-const routeMap: Record<string, PageKey> = {
+const routeMap = {
   '/': 'start',
   '/leistungen': 'leistungen',
   '/branchen': 'branchen',
@@ -143,7 +127,7 @@ const routeMap: Record<string, PageKey> = {
   '/datenschutz': 'datenschutz',
 };
 
-const pageTitles: Record<PageKey, string> = {
+const pageTitles = {
   start: 'DAZ Media & Marketing | Social Media Marketing Agentur',
   leistungen: 'Leistungen | DAZ Media & Marketing',
   branchen: 'Branchen | DAZ Media & Marketing',
@@ -155,20 +139,20 @@ const pageTitles: Record<PageKey, string> = {
   datenschutz: 'Datenschutz | DAZ Media & Marketing',
 };
 
-const app = document.querySelector<HTMLDivElement>('#app');
+const app = document.querySelector('#app');
 
 if (!app) {
   throw new Error('App-Container wurde nicht gefunden.');
 }
 
-const pathFor = (key: PageKey) => `#/${key === 'start' ? '' : key}`;
+const pathFor = (key) => `#/${key === 'start' ? '' : key}`;
 
-const getCurrentPage = (): PageKey => {
+const getCurrentPage = () => {
   const normalizedHash = window.location.hash.replace('#', '') || '/';
   return routeMap[normalizedHash] ?? 'start';
 };
 
-const renderHeader = (currentPage: PageKey) => `
+const renderHeader = (currentPage) => `
   <header class="site-header" aria-label="Hauptnavigation">
     <a class="brand" href="${pathFor('start')}" aria-label="DAZ Media & Marketing Startseite">
       <img class="brand-logo" src="/assets/brand/logo-white.png" alt="DAZ Logo" />
@@ -650,8 +634,8 @@ const renderDatenschutz = () => `
   </main>
 `;
 
-const renderPage = (page: PageKey) => {
-  const pages: Record<PageKey, () => string> = {
+const renderPage = (page) => {
+  const pages = {
     start: renderStart,
     leistungen: renderLeistungen,
     branchen: renderBranchen,
@@ -672,3 +656,4 @@ const renderPage = (page: PageKey) => {
 window.addEventListener('hashchange', () => renderPage(getCurrentPage()));
 
 renderPage(getCurrentPage());
+
