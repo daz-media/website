@@ -1,6 +1,5 @@
-﻿import './styles.css';
-
-const assetPath = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+const baseUrl = import.meta.env?.BASE_URL ?? new URL('../', import.meta.url).pathname;
+const assetPath = (path) => `${baseUrl}${path.replace(/^\//, '')}`;
 
 const navItems = [
   { key: 'leistungen', label: 'Leistungen' },
