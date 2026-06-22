@@ -1,5 +1,8 @@
-const baseUrl = import.meta.env?.BASE_URL ?? new URL('../', import.meta.url).pathname;
-const assetPath = (path) => `${baseUrl}${path.replace(/^\//, '')}`;
+const viteBaseUrl = import.meta.env?.BASE_URL;
+const assetBaseUrl = viteBaseUrl
+  ? `${viteBaseUrl}assets/`
+  : new URL('../public/assets/', import.meta.url).pathname;
+const assetPath = (path) => `${assetBaseUrl}${path.replace(/^\/?assets\//, '')}`;
 
 const navItems = [
   { key: 'leistungen', label: 'Leistungen' },
