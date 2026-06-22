@@ -1,5 +1,7 @@
 ﻿import './styles.css';
 
+const assetPath = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+
 const navItems = [
   { key: 'leistungen', label: 'Leistungen' },
   { key: 'branchen', label: 'Branchen' },
@@ -52,28 +54,28 @@ const industryBanners = [
     claim: 'Mehr Kundschaft',
     sector: 'Gastronomie',
     text: 'Reels, Storys und Anzeigen, die Restaurant, Atmosphäre und Angebot schnell erlebbar machen.',
-    image: '/assets/industry-banners/restaurant.png',
+    image: assetPath('/assets/industry-banners/restaurant.png'),
     alt: 'Modernes Restaurant mit Service und Gästen als Motiv für Gastronomie-Marketing',
   },
   {
     claim: 'Mehr Aufträge',
     sector: 'Handwerk',
     text: 'Content, der Qualität, Vertrauen und echte Arbeit sichtbar macht, bevor der erste Anruf kommt.',
-    image: '/assets/industry-banners/handwerk.png',
+    image: assetPath('/assets/industry-banners/handwerk.png'),
     alt: 'Professionelle Handwerksumgebung mit Werkzeugen und Team als Motiv für Auftragsgewinnung',
   },
   {
     claim: 'Mehr Bewerbungen',
     sector: 'Recruiting',
     text: 'Arbeitgeber-Content, der Einblicke gibt, Kultur zeigt und passende Menschen zur Bewerbung bewegt.',
-    image: '/assets/industry-banners/bewerbungen.png',
+    image: assetPath('/assets/industry-banners/bewerbungen.png'),
     alt: 'Modernes Teamgespräch in einem Büro als Motiv für Recruiting und Bewerbungen',
   },
   {
     claim: 'Mehr Sichtbarkeit',
     sector: 'Fitness & Gesundheit',
     text: 'Kurzvideos und Social Assets, die Expertise, Nähe und Ergebnisse deiner Dienstleistung transportieren.',
-    image: '/assets/industry-banners/fitness.png',
+    image: assetPath('/assets/industry-banners/fitness.png'),
     alt: 'Modernes Fitnessstudio mit Training als Motiv für Fitness- und Gesundheitsmarketing',
   },
 ];
@@ -155,7 +157,7 @@ const getCurrentPage = () => {
 const renderHeader = (currentPage) => `
   <header class="site-header" aria-label="Hauptnavigation">
     <a class="brand" href="${pathFor('start')}" aria-label="DAZ Media & Marketing Startseite">
-      <img class="brand-logo" src="/assets/brand/logo-white.png" alt="DAZ Logo" />
+      <img class="brand-logo" src="${assetPath('/assets/brand/logo-white.png')}" alt="DAZ Logo" />
       <span class="brand-text">Media & Marketing</span>
     </a>
     <nav class="nav-links" aria-label="Seitennavigation">
@@ -308,7 +310,7 @@ const renderStart = () => `
       </div>
       <div class="hero-visual">
         <img
-          src="/assets/daz-marketing-workspace.png"
+          src="${assetPath('/assets/daz-marketing-workspace.png')}"
           alt="Moderner Arbeitsplatz für digitales Marketing mit Laptop, Smartphone und Kampagnenmaterial"
         />
       </div>
@@ -656,4 +658,5 @@ const renderPage = (page) => {
 window.addEventListener('hashchange', () => renderPage(getCurrentPage()));
 
 renderPage(getCurrentPage());
+
 
